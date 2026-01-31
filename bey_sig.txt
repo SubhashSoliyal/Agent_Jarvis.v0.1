@@ -1,0 +1,1 @@
+(self, *, avatar_id: 'NotGivenOr[str | None]' = NOT_GIVEN, api_url: 'NotGivenOr[str]' = NOT_GIVEN, api_key: 'NotGivenOr[str]' = NOT_GIVEN, avatar_participant_identity: 'NotGivenOr[str]' = NOT_GIVEN, avatar_participant_name: 'NotGivenOr[str]' = NOT_GIVEN, conn_options: 'APIConnectOptions' = APIConnectOptions(max_retry=3, retry_interval=2.0, timeout=10.0)) -> 'None'

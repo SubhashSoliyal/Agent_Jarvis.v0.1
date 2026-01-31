@@ -1,0 +1,10 @@
+2026/01/31-13:57:40.964 7aac Creating DB c:\AnithingLLM\Jarvis.v3.0\Jarvis.v3.0\Data\PlaygroundSession_Clean\Default\IndexedDB\https_app.bey.chat_0.indexeddb.leveldb since it was missing.
+2026/01/31-13:57:40.971 7aac Reusing MANIFEST c:\AnithingLLM\Jarvis.v3.0\Jarvis.v3.0\Data\PlaygroundSession_Clean\Default\IndexedDB\https_app.bey.chat_0.indexeddb.leveldb/MANIFEST-000001
+2026/01/31-13:57:41.012 60c4 Level-0 table #5: started
+2026/01/31-13:57:41.015 60c4 Level-0 table #5: 1292 bytes OK
+2026/01/31-13:57:41.017 60c4 Delete type=0 #3
+2026/01/31-13:57:41.021 60c4 Manual compaction at level-0 from '\x00\x01\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x02\x00\x00\x00' @ 0 : 0; will stop at (end)
+2026/01/31-13:58:56.307 60c4 Level-0 table #7: started
+2026/01/31-13:58:56.309 60c4 Level-0 table #7: 3700 bytes OK
+2026/01/31-13:58:56.311 60c4 Delete type=0 #4
+2026/01/31-13:58:56.312 29f0 Manual compaction at level-0 from '\x00\x05\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x06\x00\x00\x00' @ 0 : 0; will stop at (end)

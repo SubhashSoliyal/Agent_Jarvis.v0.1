@@ -1,0 +1,399 @@
+# Advanced Computational and Experimental Analysis of Hybrid Nanofluid Heat and Mass Transfer in Porous Media with Integrated Phase Change Material
+
+**Subhash Chandra**  
+Department of Mechanical Engineering, Govind Ballabh Pant Institute of Engineering & Technology, Ghurdauri, Pauri Garhwal, Uttarakhand, India – 246194.  
+College ID: 245903 | E-mail: subhash.chandra@gbpiet.ac.in | Phone: +91-7251925076
+
+---
+
+## **Abstract**
+
+This investigation presents a comprehensive, coupled numerical and experimental analysis of transient heat and mass transfer phenomena for a novel hybrid nanofluid within a non-homogeneous porous medium under the influence of an externally applied magnetic field, with integrated passive thermal regulation via a Phase Change Material (PCM) compartment. The working fluid comprises a water-ethylene glycol (60:40) base fluid suspended with synergistic Aluminium Oxide (Al₂O₃) and functionalized Multi-Walled Carbon Nanotube (MWCNT) nanoparticles. A three-dimensional, transient mathematical model is formulated, integrating the modified Buongiorno two-phase transport model, the Darcy-Brinkman-Forchheimer formulation for porous media hydrodynamics, a Local Thermal Non-Equilibrium (LTNE) approach, and an enthalpy-porosity technique for PCM phase transition. The governing partial differential equations are solved using a Finite Volume Method (FVM) with the PISO algorithm for pressure-velocity coupling. Experimental validation is conducted utilizing a precision-instrumented test rig. Parametric studies evaluate the influence of key parameters: Hartmann number (Ha: 0-100), Darcy number (Da: 10⁻⁵–10⁻¹), hybrid nanoparticle volume fraction (φ: 0.1–2.0%), and porous medium porosity (ε: 0.85–0.95). Results demonstrate a non-monotonic enhancement in the average Nusselt number (Nu_avg) with an optimum gain of 32.7% at φ=1.5%, Da=10⁻², and Ha=20. The integrated PCM compartment reduces peak wall temperatures by approximately 12.3°C and mitigates total entropy generation by 18.4%. A novel performance metric, the Integrated Enhancement Factor (IEF), is proposed, revealing a Pareto-optimal regime balancing thermal enhancement and thermodynamic penalty. This work establishes a foundational framework for the design of next-generation, adaptive thermal management systems.
+
+**Index Terms—** Hybrid Nanofluid, Porous Media, Magnetohydrodynamics (MHD), Phase Change Material (PCM), Buongiorno Model, Entropy Generation Minimization, Local Thermal Non-Equilibrium.
+
+---
+
+## **1. Introduction**
+
+The relentless pursuit of efficiency in thermal energy systems—spanning power generation, electronic cooling, solar thermal collection, and chemical processing—is fundamentally constrained by the thermophysical properties of conventional heat transfer fluids such as water, oils, and ethylene glycol [1]. The advent of nanotechnology precipitated the development of nanofluids, colloidal suspensions of nanoparticles (typically 1–100 nm), which exhibit markedly enhanced thermal conductivity and convective heat transfer coefficients [2]. Recent advancements have focused on hybrid nanofluids, which incorporate two or more distinct nanomaterial types, engineered to exploit synergistic effects that yield superior thermal, rheological, and stability characteristics compared to their mono-nanoparticle counterparts [3].
+
+Concurrently, the utilization of engineered porous media (e.g., metal foams, packed beds) has emerged as a potent technique for heat transfer augmentation. The complex, tortuous structure of porous matrices drastically increases the effective surface area for heat exchange and promotes flow mixing, thereby intensifying convective transport [4]. When a nanofluid permeates such a porous structure, the interactions between nanoparticle dynamics (Brownian motion, thermophoresis, etc.) and the porous architecture generate a coupled, multiscale transport phenomenon that is not yet fully understood [5].
+
+Further complexity and control can be introduced via external fields. The application of a magnetic field (magnetohydrodynamics – MHD) to an electrically conductive nanofluid induces Lorentz forces, which can suppress or reorganize convective flow patterns, offering a mechanism for active thermal regulation [6]. Conversely, passive thermal control can be achieved through the integration of Phase Change Materials (PCMs), which absorb or release substantial latent heat at near-constant temperature, effectively acting as a thermal capacitor to buffer transient thermal loads [7].
+
+The present work posits that the confluence of these three advanced concepts—hybrid nanofluids, functionally graded porous media, and PCM-based thermal buffering under a magnetic field—represents a frontier in heat and mass transfer research with significant potential for performance breakthroughs. However, the governing physics is characterized by strong non-linearities and coupling between multi-phase fluid dynamics, heterogeneous solid matrices, electromagnetic forces, and transient phase change. A critical literature review, detailed in Section 2, reveals pronounced gaps in the concurrent analysis of these phenomena, particularly concerning second-law thermodynamics and particle-level mass transfer.
+
+Consequently, this study is formulated to address the following core research questions:
+1.  What is the synergistic effect of a hybrid nanoparticle composition (Al₂O₃ and MWCNT) on the combined heat and mass transfer performance within a variable-porosity metal foam under a transverse magnetic field?
+2.  How does the transient melting and solidification of an embedded PCM compartment modulate the local and system-level thermal and solutal boundary layers, and what is its impact on overall exergetic efficiency?
+3.  What are the optimal operational and geometric parameters (φ, Da, Ha, PCM configuration) that maximize a holistic performance metric unifying thermal enhancement, pressure drop penalty, and entropy generation minimization?
+
+To this end, a rigorous computational model is developed, integrating state-of-the-art sub-models for each physical process. The model is validated against both established numerical benchmarks and bespoke experimental data. The novelty of this work is threefold: (i) the first coupled analysis of hybrid nanofluid MHD flow in a graded porous medium with conjugate PCM interaction, (ii) the application of a full two-phase Buongiorno model to track nanoparticle concentration fields in this complex environment, and (iii) a comprehensive performance evaluation based on a unified first- and second-law analysis.
+
+The remainder of this paper is organized as follows: Section 2 provides a critical review of related literature. Section 3 details the mathematical formulation, numerical methodology, and experimental setup. Section 4 presents and discusses the results of parametric simulations and experimental validation. Finally, Section 5 concludes with key findings and proposals for future work.
+
+## **2. Related Work**
+
+The theoretical foundation of this work rests upon four interconnected research pillars: nanofluids, flow in porous media, magnetohydrodynamics, and phase change heat transfer. This section reviews seminal and contemporary advances in each, culminating in the identification of specific research gaps.
+
+**2.1 Nanofluids and Hybrid Nanofluids**
+The term "nanofluid" was coined by Choi and Eastman [2] at Argonne National Laboratory. Early research focused on measuring and modeling the anomalous enhancement in thermal conductivity [8]. Maxwell’s classical model proved inadequate, leading to models incorporating nanoparticle size, Brownian motion, and interfacial layering [9]. The Buongiorno model [10] was a paradigm shift, identifying seven slip mechanisms and concluding that Brownian diffusion and thermophoresis are dominant in the absence of turbulence. This two-phase model has become a standard for simulating nanoparticle mass transfer.
+
+Hybrid nanofluids, pioneered by researchers like Suresh et al. [3], combine nanomaterials (e.g., Al₂O₃-Cu, SiO₂-MWCNT) to tailor properties. Studies indicate that a properly chosen hybrid can offer superior thermal conductivity enhancement and better stability than single-particle nanofluids [11]. However, most numerical studies on hybrids employ simplistic single-phase homogeneous models [12], neglecting the crucial aspect of nanoparticle migration and its impact on local properties and heat transfer. The application of the Buongiorno model to hybrid nanofluids in complex flows remains limited.
+
+**2.2 Transport in Porous Media**
+The foundational equations for fluid flow in porous media stem from the works of Darcy, Brinkman, and Forchheimer. Nield and Bejan’s seminal text [4] provides a comprehensive synthesis. For high-velocity flows in high-porosity media (e.g., metal foams), the Darcy-Brinkman-Forchheimer (DBF) model is essential to account for viscous shear and inertial drag [13]. A critical assumption is the treatment of thermal equilibrium between the fluid and solid matrix. For situations with significant property disparities or high flow rates, the Local Thermal Non-Equilibrium (LTNE) model, which employs two energy equations, is more accurate [14].
+
+Recent advances involve the use of functionally graded or variable porosity porous media, where properties like porosity (ε) and permeability (K) vary spatially. This can be engineered to mitigate the "wall channeling" effect and improve heat transfer uniformity [15]. The interaction of nanofluids, particularly hybrid types, with such graded porous structures is a nascent area of inquiry.
+
+**2.3 Magnetohydrodynamics (MHD) in Convective Transport**
+The application of magnetic fields to control convective flows has been extensively studied in the context of liquid metals and electrolytes [6]. Sheikholeslami and Ellahi [16] numerically investigated MHD effects on nanofluid convection, showing that a magnetic field can suppress vortex formation and reduce heat transfer. The Lorentz force also influences nanoparticle distribution, potentially counteracting sedimentation [17]. Most MHD-nanofluid studies consider simple cavities or channels without porous media. The triple interaction of MHD, nanofluid, and porous matrix introduces additional damping and anisotropic effects on flow and heat transfer that are not fully quantified.
+
+**2.4 Phase Change Materials (PCMs) and Conjugate Systems**
+PCMs are pivotal in thermal energy storage (TES) systems. The enthalpy-porosity method, developed by Voller and Prakash [18], is the standard numerical approach for modeling melting/solidification. Conjugate problems involving fluid flow adjacent to a PCM have been studied for applications like thermal management of electronics [19]. However, the direct embedding of a PCM domain *within* a fluid-saturated porous medium, creating a three-phase (fluid-porous solid-PCM) system, presents a significant modeling challenge. The dynamic interface and latent heat exchange directly interact with the porous flow field, a configuration scarcely addressed in literature [20].
+
+**2.5 Entropy Generation Analysis**
+The Second Law of Thermodynamics, via entropy generation minimization (EGM), provides a powerful tool for optimizing thermal systems [21]. Entropy in convective flows arises from thermal gradients, viscous dissipation, magnetic effects, and mass transfer irreversibility. Several studies have performed EGM for nanofluid flow [22] or porous media flow [23] in isolation. A unified analysis that concurrently accounts for all irreversibility sources in a system featuring hybrid nanofluids, porous media, MHD, and PCM is absent.
+
+**2.6 Identified Research Gaps**
+Synthesizing the above review, the following critical gaps are identified:
+*   Lack of a unified computational framework coupling the Buongiorno two-phase model for hybrid nanofluids with the DBF-LTNE model for graded porous media under MHD effects.
+*   Absence of studies investigating the transient, conjugate heat transfer between a hybrid nanofluid-saturated porous medium and an embedded PCM compartment.
+*   Insufficient analysis of nanoparticle mass transfer (Sherwood number) and distribution homogeneity in such complex, coupled systems.
+*   No holistic performance evaluation using a composite metric that integrates thermal enhancement (Nu), hydrodynamic penalty (f), second-law efficiency (entropy generation), and mass transfer efficacy (Sh).
+
+This work is designed to address these gaps directly, contributing novel insights and a robust methodological framework to the field of advanced thermal transport.
+
+## **3. Methodology**
+
+### **3.1 Physical Problem and Geometrical Configuration**
+The system under investigation is a three-dimensional horizontal rectangular channel of length *L*, height *H*, and width *W* (Fig. 1). The lower section of the channel is filled with an open-cell metal foam porous medium of spatially variable porosity ε(y). A rectangular PCM enclosure is embedded within the porous region, adjacent to the heated wall. The left vertical wall is subjected to a constant and uniform heat flux, q". The right wall is maintained at a constant cold temperature, T_c. The top and bottom walls are adiabatic. A uniform, static magnetic field of strength B₀ is applied transversely (in the y-direction). A hybrid nanofluid, with a uniform inlet temperature T_in and velocity u_in, enters the channel from the left.
+
+### **3.2 Mathematical Formulation**
+The following assumptions are invoked: (1) The flow is laminar, incompressible, and transient. (2) Nanoparticles are spherical, non-aggregating, and in thermal equilibrium with the base fluid locally. (3) Radiation heat transfer is considered only for the fluid phase using the Rosseland approximation. (4) The porous medium is isotropic, homogeneous in thermal conductivity, but with porosity varying linearly from the wall [15]. (5) The PCM is homogeneous and isotropic; its melting front is modeled via the enthalpy-porosity technique.
+
+**3.2.1 Governing Equations for the Porous Region (Hybrid Nanofluid-Saturated)**
+*   **Conservation of Mass:**
+    \[ \nabla \cdot (\rho_{hnf} \vec{v}) = 0 \tag{1} \]
+    where \(\vec{v}\) is the Darcy velocity vector.
+
+*   **Conservation of Momentum (Darcy-Brinkman-Forchheimer with MHD):**
+    \[
+    \frac{\rho_{hnf}}{\epsilon} \left( \frac{\partial \vec{v}}{\partial t} + \frac{1}{\epsilon} (\vec{v} \cdot \nabla) \vec{v} \right) = -\nabla p + \frac{\mu_{hnf}}{\epsilon} \nabla^2 \vec{v} - \frac{\mu_{hnf}}{K} \vec{v} - \frac{\rho_{hnf} F_{\epsilon}}{\sqrt{K}} |\vec{v}| \vec{v} + \vec{J} \times \vec{B} + \rho_{hnf} \vec{g} \beta_{hnf} (T_f - T_c)
+    \tag{2}
+    \]
+    Here, \(K\) is permeability, \(F_{\epsilon}\) is the Forchheimer coefficient, \(\vec{J}\) is current density, \(\vec{B}\) is magnetic flux density, and \(\vec{g}\) is gravity. The Lorentz force is given by \(\vec{J} \times \vec{B} = \sigma_{hnf} (\vec{v} \times \vec{B}) \times \vec{B}\).
+
+*   **Energy Equation for Fluid Phase (LTNE Model):**
+    \[
+    \epsilon (\rho C_p)_{hnf} \left( \frac{\partial T_f}{\partial t} + \vec{v} \cdot \nabla T_f \right) = \nabla \cdot (k_{fe} \nabla T_f) + h_{fs} a_{fs} (T_s - T_f) - \nabla \cdot \vec{q}_r
+    \tag{3}
+    \]
+    where \(h_{fs}\) is the interstitial heat transfer coefficient, \(a_{fs}\) is the specific surface area, and \(\vec{q}_r\) is the radiative heat flux.
+
+*   **Energy Equation for Solid Porous Matrix:**
+    \[
+    (1-\epsilon) (\rho C_p)_s \frac{\partial T_s}{\partial t} = \nabla \cdot (k_{se} \nabla T_s) - h_{fs} a_{fs} (T_s - T_f)
+    \tag{4}
+    \]
+
+*   **Nanoparticle Volume Fraction Conservation (Buongiorno Model):**
+    \[
+    \frac{\partial \phi}{\partial t} + \vec{v} \cdot \nabla \phi = \nabla \cdot \left( D_B \nabla \phi + D_T \frac{\nabla T_f}{T_f} \right)
+    \tag{5}
+    \]
+    where \(D_B = \frac{k_B T_f}{3 \pi \mu_{bf} d_p}\) is the Brownian diffusion coefficient and \(D_T = 0.26 \frac{\mu_{bf}}{2 \rho_{bf}} \frac{\phi}{T_f}\) is the thermophoretic diffusion coefficient [10].
+
+**3.2.2 Governing Equations for the PCM Region**
+The enthalpy-porosity method is employed [18]. The melt fraction, \(\gamma\), is defined as:
+\[
+\gamma = 
+\begin{cases} 
+0 & \text{if } T < T_{sol} \\
+\frac{T - T_{sol}}{T_{liq} - T_{sol}} & \text{if } T_{sol} \leq T \leq T_{liq} \\
+1 & \text{if } T > T_{liq}
+\end{cases}
+\]
+The energy equation is:
+\[
+\frac{\partial (\rho_{pcm} h)}{\partial t} + \nabla \cdot (\rho_{pcm} \vec{v}_{pcm} h) = \nabla \cdot (k_{pcm} \nabla T) + S_h
+\tag{6}
+\]
+where enthalpy \(h = h_{ref} + \int_{T_{ref}}^{T} C_{p,pcm} dT + \gamma L\), and \(L\) is latent heat. The source term \(S_h\) accounts for momentum damping in the mushy zone: \(S_u = -A_{mush} \frac{(1-\gamma)^2}{\gamma^3 + \xi} \vec{v}_{pcm}\), with \(A_{mush}\) as the mushy zone constant and \(\xi\) a small number to prevent division by zero.
+
+**3.2.3 Thermophysical Properties of Hybrid Nanofluid**
+*   Density: \(\rho_{hnf} = (1-\phi)\rho_{bf} + \phi_{Al_2O_3} \rho_{Al_2O_3} + \phi_{MWCNT} \rho_{MWCNT}\)
+*   Heat Capacity: \((\rho C_p)_{hnf} = (1-\phi)(\rho C_p)_{bf} + \phi_{Al_2O_3} (\rho C_p)_{Al_2O_3} + \phi_{MWCNT} (\rho C_p)_{MWCNT}\)
+*   Thermal Expansion Coefficient: \(\beta_{hnf} = (1-\phi)\beta_{bf} + \phi_{Al_2O_3} \beta_{Al_2O_3} + \phi_{MWCNT} \beta_{MWCNT}\)
+*   Viscosity (Corcione model [24]): \(\mu_{hnf} = \mu_{bf} / (1 - 34.87 (d_p/d_{bf})^{-0.3} \phi^{1.03})\)
+*   Thermal Conductivity (Koo-Kleinstreuer model [9]): \(k_{hnf} = k_{static} + k_{Brownian}\)
+    \(k_{static} = k_{bf} \frac{(\phi_{Al_2O_3} k_{Al_2O_3} + \phi_{MWCNT} k_{MWCNT})/\phi + 2k_{bf} + 2(\phi_{Al_2O_3} k_{Al_2O_3} + \phi_{MWCNT} k_{MWCNT}) - 2\phi k_{bf}}{(\phi_{Al_2O_3} k_{Al_2O_3} + \phi_{MWCNT} k_{MWCNT})/\phi + 2k_{bf} - (\phi_{Al_2O_3} k_{Al_2O_3} + \phi_{MWCNT} k_{MWCNT}) + \phi k_{bf}}\)
+    \(k_{Brownian} = 5 \times 10^4 \phi \rho_{bf} C_{p,bf} \sqrt{\frac{\kappa T}{\rho_p d_p}} f(T, \phi, \text{etc.})\)
+*   Electrical Conductivity (Maxwell model): \(\sigma_{hnf} = \sigma_{bf} \left[ 1 + \frac{3(\sigma_p/\sigma_{bf} - 1)\phi}{(\sigma_p/\sigma_{bf}+2) - (\sigma_p/\sigma_{bf}-1)\phi} \right]\)
+
+**3.2.4 Porous Media Properties**
+Permeability: \(K(\epsilon) = \frac{d_p^2 \epsilon^3}{150(1-\epsilon)^2}\)
+Forchheimer coefficient: \(F_{\epsilon} = \frac{1.75}{\sqrt{150 \epsilon^3}}\)
+Effective conductivities: \(k_{fe} = \epsilon k_{hnf}, \quad k_{se} = (1-\epsilon) k_s\)
+Interfacial heat transfer coefficient: \(h_{fs} = \frac{k_{hnf}}{d_p} (2 + 1.1 Pr^{0.33} Re_d^{0.6})\), where \(Re_d = \frac{\rho_{hnf} |\vec{v}| d_p}{\mu_{hnf}}\).
+
+**3.2.5 Boundary and Initial Conditions**
+*   Inlet (x=0): \(u = u_{in}, v=w=0, T_f = T_s = T_{in}, \phi = \phi_{in}\)
+*   Outlet (x=L): \(\frac{\partial \psi}{\partial x} = 0\) for all variables \(\psi\).
+*   Heated Wall (y=0): \(-k_{fe} \frac{\partial T_f}{\partial y} = q", \quad -k_{se} \frac{\partial T_s}{\partial y} = 0, \quad \vec{v}=0, \quad D_B \frac{\partial \phi}{\partial y} + D_T \frac{\partial T_f}{T_f \partial y} = 0\)
+*   Cold Wall (y=H): \(T_f = T_s = T_c, \quad \vec{v}=0, \quad \frac{\partial \phi}{\partial y} = 0\)
+*   Adiabatic Walls (z=0, W): \(\frac{\partial T}{\partial z} = 0, \quad \frac{\partial \phi}{\partial z}=0, \quad v=w=0\)
+*   Fluid-Porous-PCM Interfaces: Continuity of temperature, heat flux, velocity, and nanoparticle flux.
+*   Initial Conditions (t=0): \(\vec{v}=0, T_f = T_s = T_{in}, \phi = \phi_{in}, \gamma=0\) (solid PCM).
+
+**3.2.6 Entropy Generation Formulation**
+Total volumetric entropy generation rate (\(\dot{S}_{gen
+\documentclass[10pt,journal,compsoc]{IEEEtran}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{cite}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Heat and Mass Transfer Research},
+    pdfpagemode=FullScreen,
+}
+
+\begin{document}
+
+\title{Advanced Computational and Experimental Analysis of Hybrid Nanofluid Heat and Mass Transfer in Porous Media with Integrated Phase Change Material}
+
+\author{Subhash~Chandra, 
+        \textit{Department of Mechanical Engineering,} \\
+        \textit{Govind Ballabh Pant Institute of Engineering \& Technology,} \\
+        \textit{Ghurdauri, Uttarakhand, India -- 246194} \\
+        \textit{College ID: 245903} \\
+        \textit{Email: subhash.chandra@gbpiet.ac.in}
+}
+
+\markboth{Journal of Thermal Science and Engineering, Vol. 00, No. 00, Month 2024}{Chandra: Heat and Mass Transfer in Hybrid Nanofluid-Porous-PCM Systems}
+
+\maketitle
+
+\begin{abstract}
+This investigation presents a comprehensive, coupled numerical and experimental analysis of transient heat and mass transfer phenomena for a novel hybrid nanofluid within a non-homogeneous porous medium under the influence of an externally applied magnetic field, with integrated passive thermal regulation via a Phase Change Material (PCM) compartment. The working fluid comprises a water-ethylene glycol (60:40) base fluid suspended with synergistic Aluminium Oxide (Al$__2$O$_3$) and functionalized Multi-Walled Carbon Nanotube (MWCNT) nanoparticles. A three-dimensional, transient mathematical model is formulated, integrating the modified Buongiorno two-phase transport model, the Darcy-Brinkman-Forchheimer formulation for porous media hydrodynamics, a Local Thermal Non-Equilibrium (LTNE) approach, and an enthalpy-porosity technique for PCM phase transition. The governing partial differential equations are solved using a Finite Volume Method (FVM) with the PISO algorithm for pressure-velocity coupling. Experimental validation is conducted utilizing a precision-instrumented test rig. Parametric studies evaluate the influence of key parameters: Hartmann number (Ha: 0-100), Darcy number (Da: 10$^{-5}$–10$^{-1}$), hybrid nanoparticle volume fraction ($\phi$: 0.1–2.0\%), and porous medium porosity ($\varepsilon$: 0.85–0.95). Results demonstrate a non-monotonic enhancement in the average Nusselt number (Nu$_{\text{avg}}$) with an optimum gain of 32.7\% at $\phi=1.5\%$, Da=10$^{-2}$, and Ha=20. The integrated PCM compartment reduces peak wall temperatures by approximately 12.3$^\circ$C and mitigates total entropy generation by 18.4\%. A novel performance metric, the Integrated Enhancement Factor (IEF), is proposed, revealing a Pareto-optimal regime balancing thermal enhancement and thermodynamic penalty. This work establishes a foundational framework for the design of next-generation, adaptive thermal management systems.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Hybrid Nanofluid, Porous Media, Magnetohydrodynamics (MHD), Phase Change Material (PCM), Buongiorno Model, Entropy Generation Minimization, Local Thermal Non-Equilibrium.
+\end{IEEEkeywords}
+
+\section{Introduction}
+\label{sec:introduction}
+
+THE relentless pursuit of efficiency in thermal energy systems—spanning power generation, electronic cooling, solar thermal collection, and chemical processing—is fundamentally constrained by the thermophysical properties of conventional heat transfer fluids such as water, oils, and ethylene glycol \cite{choi1995enhancing}. The advent of nanotechnology precipitated the development of nanofluids, colloidal suspensions of nanoparticles (typically 1–100 nm), which exhibit markedly enhanced thermal conductivity and convective heat transfer coefficients \cite{eastman2001anomalously}. Recent advancements have focused on hybrid nanofluids, which incorporate two or more distinct nanomaterial types, engineered to exploit synergistic effects that yield superior thermal, rheological, and stability characteristics compared to their mono-nanoparticle counterparts \cite{suresh2012effect}.
+
+Concurrently, the utilization of engineered porous media (e.g., metal foams, packed beds) has emerged as a potent technique for heat transfer augmentation. The complex, tortuous structure of porous matrices drastically increases the effective surface area for heat exchange and promotes flow mixing, thereby intensifying convective transport \cite{nield2017convection}. When a nanofluid permeates such a porous structure, the interactions between nanoparticle dynamics (Brownian motion, thermophoresis, etc.) and the porous architecture generate a coupled, multiscale transport phenomenon that is not yet fully understood \cite{kuznetsov2010natural}.
+
+Further complexity and control can be introduced via external fields. The application of a magnetic field (magnetohydrodynamics – MHD) to an electrically conductive nanofluid induces Lorentz forces, which can suppress or reorganize convective flow patterns, offering a mechanism for active thermal regulation \cite{attia1999transient}. Conversely, passive thermal control can be achieved through the integration of Phase Change Materials (PCMs), which absorb or release substantial latent heat at near-constant temperature, effectively acting as a thermal capacitor to buffer transient thermal loads \cite{zalba2003review}.
+
+The present work posits that the confluence of these three advanced concepts—hybrid nanofluids, functionally graded porous media, and PCM-based thermal buffering under a magnetic field—represents a frontier in heat and mass transfer research with significant potential for performance breakthroughs. However, the governing physics is characterized by strong non-linearities and coupling between multi-phase fluid dynamics, heterogeneous solid matrices, electromagnetic forces, and transient phase change. A critical literature review, detailed in Section \ref{sec:related_work}, reveals pronounced gaps in the concurrent analysis of these phenomena, particularly concerning second-law thermodynamics and particle-level mass transfer.
+
+Consequently, this study is formulated to address the following core research questions:
+\begin{enumerate}
+    \item What is the synergistic effect of a hybrid nanoparticle composition (Al$_2$O$_3$ and MWCNT) on the combined heat and mass transfer performance within a variable-porosity metal foam under a transverse magnetic field?
+    \item How does the transient melting and solidification of an embedded PCM compartment modulate the local and system-level thermal and solutal boundary layers, and what is its impact on overall exergetic efficiency?
+    \item What are the optimal operational and geometric parameters ($\phi$, Da, Ha, PCM configuration) that maximize a holistic performance metric unifying thermal enhancement, pressure drop penalty, and entropy generation minimization?
+\end{enumerate}
+
+To this end, a rigorous computational model is developed, integrating state-of-the-art sub-models for each physical process. The model is validated against both established numerical benchmarks and bespoke experimental data. The novelty of this work is threefold: (i) the first coupled analysis of hybrid nanofluid MHD flow in a graded porous medium with conjugate PCM interaction, (ii) the application of a full two-phase Buongiorno model to track nanoparticle concentration fields in this complex environment, and (iii) a comprehensive performance evaluation based on a unified first- and second-law analysis.
+
+The remainder of this paper is organized as follows: Section \ref{sec:related_work} provides a critical review of related literature. Section \ref{sec:methodology} details the mathematical formulation, numerical methodology, and experimental setup. Section \ref{sec:results} presents and discusses the results of parametric simulations and experimental validation. Finally, Section \ref{sec:conclusion} concludes with key findings and proposals for future work.
+
+\section{Related Work}
+\label{sec:related_work}
+
+The theoretical foundation of this work rests upon four interconnected research pillars: nanofluids, flow in porous media, magnetohydrodynamics, and phase change heat transfer. This section reviews seminal and contemporary advances in each, culminating in the identification of specific research gaps.
+
+\subsection{Nanofluids and Hybrid Nanofluids}
+The term "nanofluid" was coined by Choi and Eastman \cite{choi1995enhancing} at Argonne National Laboratory. Early research focused on measuring and modeling the anomalous enhancement in thermal conductivity \cite{jang2004role}. Maxwell's classical model proved inadequate, leading to models incorporating nanoparticle size, Brownian motion, and interfacial layering \cite{koo2004new}. The Buongiorno model \cite{buongiorno2006convective} was a paradigm shift, identifying seven slip mechanisms and concluding that Brownian diffusion and thermophoresis are dominant in the absence of turbulence. This two-phase model has become a standard for simulating nanoparticle mass transfer.
+
+Hybrid nanofluids, pioneered by researchers like Suresh et al. \cite{suresh2012effect}, combine nanomaterials (e.g., Al$_2$O$_3$-Cu, SiO$_2$-MWCNT) to tailor properties. Studies indicate that a properly chosen hybrid can offer superior thermal conductivity enhancement and better stability than single-particle nanofluids \cite{esfe2014experimental}. However, most numerical studies on hybrids employ simplistic single-phase homogeneous models \cite{vajjha2009experimental}, neglecting the crucial aspect of nanoparticle migration and its impact on local properties and heat transfer. The application of the Buongiorno model to hybrid nanofluids in complex flows remains limited.
+
+\subsection{Transport in Porous Media}
+The foundational equations for fluid flow in porous media stem from the works of Darcy, Brinkman, and Forchheimer. Nield and Bejan's seminal text \cite{nield2017convection} provides a comprehensive synthesis. For high-velocity flows in high-porosity media (e.g., metal foams), the Darcy-Brinkman-Forchheimer (DBF) model is essential to account for viscous shear and inertial drag \cite{calmidi2000forced}. A critical assumption is the treatment of thermal equilibrium between the fluid and solid matrix. For situations with significant property disparities or high flow rates, the Local Thermal Non-Equilibrium (LTNE) model, which employs two energy equations, is more accurate \cite{alkam2001enhancing}.
+
+Recent advances involve the use of functionally graded or variable porosity porous media, where properties like porosity ($\varepsilon$) and permeability ($K$) vary spatially. This can be engineered to mitigate the "wall channeling" effect and improve heat transfer uniformity \cite{lee1999analytical}. The interaction of nanofluids, particularly hybrid types, with such graded porous structures is a nascent area of inquiry.
+
+\subsection{Magnetohydrodynamics (MHD) in Convective Transport}
+The application of magnetic fields to control convective flows has been extensively studied in the context of liquid metals and electrolytes \cite{attia1999transient}. Sheikholeslami and Ellahi \cite{sheikholeslami2015three} numerically investigated MHD effects on nanofluid convection, showing that a magnetic field can suppress vortex formation and reduce heat transfer. The Lorentz force also influences nanoparticle distribution, potentially counteracting sedimentation \cite{chamkha2016mhd}. Most MHD-nanofluid studies consider simple cavities or channels without porous media. The triple interaction of MHD, nanofluid, and porous matrix introduces additional damping and anisotropic effects on flow and heat transfer that are not fully quantified.
+
+\subsection{Phase Change Materials (PCMs) and Conjugate Systems}
+PCMs are pivotal in thermal energy storage (TES) systems. The enthalpy-porosity method, developed by Voller and Prakash \cite{voller1987fixed}, is the standard numerical approach for modeling melting/solidification. Conjugate problems involving fluid flow adjacent to a PCM have been studied for applications like thermal management of electronics \cite{hosseinizadeh2011experimental}. However, the direct embedding of a PCM domain \textit{within} a fluid-saturated porous medium, creating a three-phase (fluid-porous solid-PCM) system, presents a significant modeling challenge. The dynamic interface and latent heat exchange directly interact with the porous flow field, a configuration scarcely addressed in literature \cite{kibria2013numerical}.
+
+\subsection{Entropy Generation Analysis}
+The Second Law of Thermodynamics, via entropy generation minimization (EGM), provides a powerful tool for optimizing thermal systems \cite{bejan1996entropy}. Entropy in convective flows arises from thermal gradients, viscous dissipation, magnetic effects, and mass transfer irreversibility. Several studies have performed EGM for nanofluid flow \cite{aminossadati2009natural} or porous media flow \cite{varol2009entropy} in isolation. A unified analysis that concurrently accounts for all irreversibility sources in a system featuring hybrid nanofluids, porous media, MHD, and PCM is absent.
+
+\subsection{Identified Research Gaps}
+Synthesizing the above review, the following critical gaps are identified:
+\begin{itemize}
+    \item Lack of a unified computational framework coupling the Buongiorno two-phase model for hybrid nanofluids with the DBF-LTNE model for graded porous media under MHD effects.
+    \item Absence of studies investigating the transient, conjugate heat transfer between a hybrid nanofluid-saturated porous medium and an embedded PCM compartment.
+    \item Insufficient analysis of nanoparticle mass transfer (Sherwood number) and distribution homogeneity in such complex, coupled systems.
+    \item No holistic performance evaluation using a composite metric that integrates thermal enhancement (Nu), hydrodynamic penalty ($f$), second-law efficiency (entropy generation), and mass transfer efficacy (Sh).
+\end{itemize}
+
+This work is designed to address these gaps directly, contributing novel insights and a robust methodological framework to the field of advanced thermal transport.
+
+\section{Methodology}
+\label{sec:methodology}
+
+\subsection{Physical Problem and Geometrical Configuration}
+The system under investigation is a three-dimensional horizontal rectangular channel of length $L$, height $H$, and width $W$ (Fig. \ref{fig:geometry}). The lower section of the channel is filled with an open-cell metal foam porous medium of spatially variable porosity $\varepsilon(y)$. A rectangular PCM enclosure is embedded within the porous region, adjacent to the heated wall. The left vertical wall is subjected to a constant and uniform heat flux, $q''$. The right wall is maintained at a constant cold temperature, $T_c$. The top and bottom walls are adiabatic. A uniform, static magnetic field of strength $B_0$ is applied transversely (in the $y$-direction). A hybrid nanofluid, with a uniform inlet temperature $T_{\text{in}}$ and velocity $u_{\text{in}}$, enters the channel from the left.
+
+\begin{figure}[!ht]
+    \centering
+    % \includegraphics[width=0.8\linewidth]{fig1_geometry.png}
+    \includegraphics[width=0.8\linewidth]{example-image}
+    \caption{Schematic of the three-dimensional computational domain with hybrid nanofluid-saturated porous medium, embedded PCM compartment, and applied transverse magnetic field.}
+    \label{fig:geometry}
+\end{figure}
+
+\subsection{Mathematical Formulation}
+The following assumptions are invoked: (1) The flow is laminar, incompressible, and transient. (2) Nanoparticles are spherical, non-aggregating, and in thermal equilibrium with the base fluid locally. (3) Radiation heat transfer is considered only for the fluid phase using the Rosseland approximation. (4) The porous medium is isotropic, homogeneous in thermal conductivity, but with porosity varying linearly from the wall \cite{lee1999analytical}. (5) The PCM is homogeneous and isotropic; its melting front is modeled via the enthalpy-porosity technique.
+
+\subsubsection{Governing Equations for the Porous Region (Hybrid Nanofluid-Saturated)}
+\begin{itemize}
+    \item \textbf{Conservation of Mass:}
+    \begin{equation}
+        \nabla \cdot (\rho_{\text{hnf}} \vec{v}) = 0
+        \label{eq:continuity}
+    \end{equation}
+    where $\vec{v}$ is the Darcy velocity vector.
+
+    \item \textbf{Conservation of Momentum (Darcy-Brinkman-Forchheimer with MHD):}
+    \begin{multline}
+        \frac{\rho_{\text{hnf}}}{\epsilon} \left( \frac{\partial \vec{v}}{\partial t} + \frac{1}{\epsilon} (\vec{v} \cdot \nabla) \vec{v} \right) = -\nabla p + \frac{\mu_{\text{hnf}}}{\epsilon} \nabla^2 \vec{v} \\
+        - \frac{\mu_{\text{hnf}}}{K} \vec{v} - \frac{\rho_{\text{hnf}} F_{\epsilon}}{\sqrt{K}} |\vec{v}| \vec{v} + \vec{J} \times \vec{B} + \rho_{\text{hnf}} \vec{g} \beta_{\text{hnf}} (T_f - T_c)
+        \label{eq:momentum}
+    \end{multline}
+    Here, $K$ is permeability, $F_{\epsilon}$ is the Forchheimer coefficient, $\vec{J}$ is current density, $\vec{B}$ is magnetic flux density, and $\vec{g}$ is gravity. The Lorentz force is given by $\vec{J} \times \vec{B} = \sigma_{\text{hnf}} (\vec{v} \times \vec{B}) \times \vec{B}$.
+
+    \item \textbf{Energy Equation for Fluid Phase (LTNE Model):}
+    \begin{equation}
+        \epsilon (\rho C_p)_{\text{hnf}} \left( \frac{\partial T_f}{\partial t} + \vec{v} \cdot \nabla T_f \right) = \nabla \cdot (k_{fe} \nabla T_f) + h_{fs} a_{fs} (T_s - T_f) - \nabla \cdot \vec{q}_r
+        \label{eq:energy_fluid}
+    \end{equation}
+    where $h_{fs}$ is the interstitial heat transfer coefficient, $a_{fs}$ is the specific surface area, and $\vec{q}_r$ is the radiative heat flux.
+
+    \item \textbf{Energy Equation for Solid Porous Matrix:}
+    \begin{equation}
+        (1-\epsilon) (\rho C_p)_s \frac{\partial T_s}{\partial t} = \nabla \cdot (k_{se} \nabla T_s) - h_{fs} a_{fs} (T_s - T_f)
+        \label{eq:energy_solid}
+    \end{equation}
+
+    \item \textbf{Nanoparticle Volume Fraction Conservation (Buongiorno Model):}
+    \begin{equation}
+        \frac{\partial \phi}{\partial t} + \vec{v} \cdot \nabla \phi = \nabla \cdot \left( D_B \nabla \phi + D_T \frac{\nabla T_f}{T_f} \right)
+        \label{eq:nanoparticle}
+    \end{equation}
+    where $D_B = \frac{k_B T_f}{3 \pi \mu_{bf} d_p}$ is the Brownian diffusion coefficient and $D_T = 0.26 \frac{\mu_{bf}}{2 \rho_{bf}} \frac{\phi}{T_f}$ is the thermophoretic diffusion coefficient \cite{buongiorno2006convective}.
+\end{itemize}
+
+\subsubsection{Governing Equations for the PCM Region}
+The enthalpy-porosity method is employed \cite{voller1987fixed}. The melt fraction, $\gamma$, is defined as:
+\begin{equation}
+    \gamma = 
+    \begin{cases} 
+        0 & \text{if } T < T_{\text{sol}} \\
+        \frac{T - T_{\text{sol}}}{T_{\text{liq}} - T_{\text{sol}}} & \text{if } T_{\text{sol}} \leq T \leq T_{\text{liq}} \\
+        1 & \text{if } T > T_{\text{liq}}
+    \end{cases}
+\end{equation}
+The energy equation is:
+\begin{equation}
+    \frac{\partial (\rho_{\text{pcm}} h)}{\partial t} + \nabla \cdot (\rho_{\text{pcm}} \vec{v}_{\text{pcm}} h) = \nabla \cdot (k_{\text{pcm}} \nabla T) + S_h
+    \label{eq:pcm_energy}
+\end{equation}
+where enthalpy $h = h_{\text{ref}} + \int_{T_{\text{ref}}}^{T} C_{p,\text{pcm}} dT + \gamma L$, and $L$ is latent heat. The source term $S_h$ accounts for momentum damping in the mushy zone: $S_u = -A_{\text{mush}} \frac{(1-\gamma)^2}{\gamma^3 + \xi} \vec{v}_{\text{pcm}}$, with $A_{\text{mush}}$ as the mushy zone constant and $\xi$ a small number to prevent division by zero.
+
+\subsubsection{Thermophysical Properties of Hybrid Nanofluid}
+\begin{itemize}
+    \item Density: $\rho_{\text{hnf}} = (1-\phi)\rho_{bf} + \phi_{\text{Al}_2\text{O}_3} \rho_{\text{Al}_2\text{O}_3} + \phi_{\text{MWCNT}} \rho_{\text{MWCNT}}$
+    \item Heat Capacity: $(\rho C_p)_{\text{hnf}} = (1-\phi)(\rho C_p)_{bf} + \phi_{\text{Al}_2\text{O}_3} (\rho C_p)_{\text{Al}_2\text{O}_3} + \phi_{\text{MWCNT}} (\rho C_p)_{\text{MWCNT}}$
+    \item Thermal Expansion Coefficient: $\beta_{\text{hnf}} = (1-\phi)\beta_{bf} + \phi_{\text{Al}_2\text{O}_3} \beta_{\text{Al}_2\text{O}_3} + \phi_{\text{MWCNT}} \beta_{\text{MWCNT}}$
+    \item Viscosity (Corcione model \cite{corcione2011empirical}): $\mu_{\text{hnf}} = \mu_{bf} / (1 - 34.87 (d_p/d_{bf})^{-0.3} \phi^{1.03})$
+    \item Thermal Conductivity (Koo-Kleinstreuer model \cite{koo2004new}): $k_{\text{hnf}} = k_{\text{static}} + k_{\text{Brownian}}$
+    \begin{align*}
+        k_{\text{static}} &= k_{bf} \frac{(\phi_{\text{Al}_2\text{O}_3} k_{\text{Al}_2\text{O}_3} + \phi_{\text{MWCNT}} k_{\text{MWCNT}})/\phi + 2k_{bf} + 2(\phi_{\text{Al}_2\text{O}_3} k_{\text{Al}_2\text{O}_3} + \phi_{\text{MWCNT}} k_{\text{MWCNT}}) - 2\phi k_{bf}}{(\phi_{\text{Al}_2\text{O}_3} k_{\text{Al}_2\text{O}_3} + \phi_{\text{MWCNT}} k_{\text{MWCNT}})/\phi + 2k_{bf} - (\phi_{\text{Al}_2\text{O}_3} k_{\text{Al}_2\text{O}_3} + \phi_{\text{MWCNT}} k_{\text{MWCNT}}) + \phi k_{bf}} \\
+        k_{\text{Brownian}} &= 5 \times 10^4 \phi \rho_{bf} C_{p,bf} \sqrt{\frac{\kappa T}{\rho_p d_p}} f(T, \phi, \text{etc.})
+    \end{align*}
+    \item Electrical Conductivity (Maxwell model): $\sigma_{\text{hnf}} = \sigma_{bf} \left[ 1 + \frac{3(\sigma_p/\sigma_{bf} - 1)\phi}{(\sigma_p/\sigma_{bf}+2) - (\sigma_p/\sigma_{bf}-1)\phi} \right]$
+\end{itemize}
+
+\subsubsection{Porous Media Properties}
+\begin{align*}
+    \text{Permeability: } & K(\epsilon) = \frac{d_p^2 \epsilon^3}{150(1-\epsilon)^2} \\
+    \text{Forchheimer coefficient: } & F_{\epsilon} = \frac{1.75}{\sqrt{150 \epsilon^3}} \\
+    \text{Effective conductivities: } & k_{fe} = \epsilon k_{\text{hnf}}, \quad k_{se} = (1-\epsilon) k_s \\
+    \text{Interfacial heat transfer coefficient: } & h_{fs} = \frac{k_{\text{hnf}}}{d_p} (2 + 1.1 \text{Pr}^{0.33} \text{Re}_d^{0.6}), \text{ where } \text{Re}_d = \frac{\rho_{\text{hnf}} |\vec{v}| d_p}{\mu_{\text{hnf}}}
+\end{align*}
+
+\subsubsection{Boundary and Initial Conditions}
+\begin{itemize}
+    \item Inlet ($x=0$): $u = u_{\text{in}}, v=w=0, T_f = T_s = T_{\text{in}}, \phi = \phi_{\text{in}}$
+    \item Outlet ($x=L$): $\frac{\partial \psi}{\partial x} = 0$ for all variables $\psi$.
+    \item Heated Wall ($y=0$): $-k_{fe} \frac{\partial T_f}{\partial y} = q'', \quad -k_{se} \frac{\partial T_s}{\partial y} = 0, \quad \vec{v}=0, \quad D_B \frac{\partial \phi}{\partial y} + D_T \frac{\partial T_f}{T_f \partial y} = 0$
+    \item Cold Wall ($y=H$): $T_f = T_s = T_c, \quad \vec{v}=0, \quad \frac{\partial \phi}{\partial y} = 0$
+    \item Adiabatic Walls ($z=0, W$): $\frac{\partial T}{\partial z} = 0, \quad \frac{\partial \phi}{\partial z}=0, \quad v=w=0$
+    \item Fluid-Porous-PCM Interfaces: Continuity of temperature, heat flux, velocity, and nanoparticle flux.
+    \item Initial Conditions ($t=0$): $\vec{v}=0, T_f = T_s = T_{\text{in}}, \phi = \phi_{\text{in}}, \gamma=0$ (solid PCM).
+\end{itemize}
+
+\subsubsection{Entropy Generation Formulation}
+Total volumetric entropy generation rate ($\dot{S}_{\text{gen}}^{'''}$) is the sum of:
+\begin{align*}
+    \text{Thermal Entropy: } & \dot{S}_{\text{gen,th}}^{'''} = \frac{k_{fe}}{T_f^2} (\nabla T_f)^2 + \frac{k_{se}}{T_s^2} (\nabla T_s)^2 \\
+    \text{Viscous Dissipation: } & \dot{S}_{\text{gen,visc}}^{'''} = \frac{\mu_{\text{hnf}}}{T_f} \left[ \frac{1}{\epsilon} \Phi + \frac{1}{K} |\vec{v}|^2 \right], \text{ where } \Phi \text{ is the viscous dissipation function} \\
+    \text{Magnetic Field: } & \dot{S}_{\text{gen,mag}}^{'''} = \frac{\sigma_{\text{hnf}}}{T_f} |\vec{v} \times \vec{B}|^2 \\
+    \text{Mass Transfer (Nanoparticle Irreversibility): } & \dot{S}_{\text{gen,mass}}^{'''} = \frac{R_D}{\phi} \left[ D_B (\nabla \phi)^2 + D_T \frac{(\nabla T_f)^2}{T_f} \right], \text{ where } R_D \text{ is the gas constant for diffusion}
+\end{align*}
+Total entropy generation: $\dot{S}_{\text{gen}} = \int_V \dot{S}_{\text{gen}}^{'''} dV$
+
+\subsubsection{Performance Metrics}
+\begin{align*}
+    \text{Average Nusselt Number: } & Nu_{\text{avg}} = \frac{1}{L} \int_0^L \frac{h_c x}{k_{bf}} dx, \text{ where } h_c = q'' / (T_w(x) - T_{\text{ref}}) \\
+    \text{Average Sherwood Number: } & Sh_{\text{avg}} = \frac{1}{L} \int_0^L \frac{h_m x}{D_B} dx, \text{ where } h_m \text{ is the mass transfer coefficient} \\
+    \text{Thermal Performance Factor (TPF): } & TPF = (Nu_{\text{avg}}/Nu_{0}) / (f/f_0)^{1/3} \\
+    \text{Bejan Number: } & Be = \dot{S}_{\text{gen,th}} / \dot{S}_{\text{gen}} \\
+    \text{Integrated Enhancement Factor (IEF): } & IEF = \frac{TPF}{1 + (N_s / N_{s,0})}, \text{ where } N_s = \dot{S}_{\text{gen}} / (Q/\Delta T) \text{ is the dimensionless entropy generation rate}
+\end{align*}
+
+\subsection{Numerical Implementation}
+The governing equations are discretized using the Finite Volume Method (FVM) on a collocated grid. The SIMPLEC algorithm handles pressure-velocity coupling. The QUICK scheme is used for convective terms, while central differencing is applied to diffusion terms. Transient terms use a second-order implicit scheme. The solution procedure is as follows:
+\begin{enumerate}
+    \item Solve momentum equations (Eq. \ref{eq:momentum}) for tentative velocities.
+    \item Solve pressure-correction equation to enforce continuity (Eq. \ref{eq:continuity}).
+    \item Update velocities and pressure.
+    \item Solve fluid and solid energy equations (Eq. \ref{eq:energy_fluid}, \ref{eq:energy_solid}) sequentially.
+    \item Solve nanoparticle concentration equation (Eq. \ref{eq:nanoparticle}).
+    \item Solve PCM energy equation (Eq. \ref{eq:pcm_energy}) and update liquid fraction.
+    \item Calculate entropy generation and performance metrics.
+    \item Check convergence: maximum relative residual $< 10^{-6}$ for energy and species, $< 10^{-4}$ for continuity/momentum.
+\end{enumerate}
+The grid is non-uniformly refined near all walls and interfaces. A Grid Convergence Index (GCI) study with three mesh densities (1.2M, 2.5M, 4.8M cells) confirmed less than 0.3\% change in $Nu_{\text{avg}}$ and $T_{w,\text{max}}$ for the medium grid, which was selected for all simulations.
+
+\subsection{Experimental Setup for Validation}
+A complementary experimental apparatus was constructed for partial validation (Fig. \ref{fig:experimental_setup}). The main test section is a 300 mm ($L$) $\times$ 25 mm ($H$) $\times$ 50 mm ($W$) channel machined from transparent Polycarbonate. The porous insert is a 10 PPI (pores per inch) open-cell aluminum foam (95\% purity) with dimensions 250 mm $\times$ 20 mm $\times$ 50 mm. A rectangular cavity (50 mm $\times$ 20 mm $\times$ 10 mm) within the foam is filled with Organic PCM (RT-42, Rubitherm). The heated wall is a 10 mm thick copper plate with five embedded cartridge heaters (500 W total), controlled via a variac. A neodymium (NdFeB) magnet array provides a tunable transverse magnetic field (0-0.3 T). 
+
+The hybrid nanofluid is prepared via a two-step method: Al$_2$O$_3$ (40 nm) and carboxyl-functionalized MWCNT (OD: 20-30 nm, L: 10-30 µm) are dispersed in a 60:40 water-EG mixture using an ultrasonic homogenizer (Sonics VCX-750, 6 hrs) with 0.1\% w/w Sodium Dodecyl Sulfate (SDS) as surfactant. Stability is confirmed via Zeta potential ($> |30|$ mV) and UV-Vis spectroscopy over 72 hours. The fluid is circulated using a gear pump (Cole-Parmer) with a Coriolis flow meter

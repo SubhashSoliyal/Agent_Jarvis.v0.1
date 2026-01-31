@@ -1,0 +1,12 @@
+2025-12-30 22:11:56.236444: Controller auto-activated.
+2025-12-30 22:11:56.450584: Mouse clicked: left
+2025-12-30 22:11:58.457094: Controller auto-deactivated.
+2025-12-30 22:11:58.543445: Controller auto-activated.
+2025-12-30 22:12:00.447515: Controller auto-activated.
+2025-12-30 22:12:00.547800: Controller auto-deactivated.
+2025-12-30 22:12:00.658006: Mouse clicked: left
+2025-12-30 22:12:02.672298: Controller auto-deactivated.
+2025-12-30 22:12:02.789076: Controller auto-activated.
+2025-12-30 22:12:03.702435: Controller auto-activated.
+2025-12-30 22:12:03.906866: Pressed key: Enter
+2025-12-30 22:12:05.912828: Controller auto-deactivated.

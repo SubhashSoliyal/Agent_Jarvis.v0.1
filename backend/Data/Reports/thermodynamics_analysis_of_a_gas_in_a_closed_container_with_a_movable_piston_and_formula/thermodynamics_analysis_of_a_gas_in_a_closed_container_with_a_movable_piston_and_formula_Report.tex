@@ -1,0 +1,287 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{array}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, urlcolor=blue, linkcolor=black, citecolor=black}
+\title{Comprehensive Thermodynamic Analysis of a Gas in a Closed Container with a Movable Piston}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\newpage
+
+\section{Abstract}
+This report provides a comprehensive thermodynamic analysis of a classical closed system: a gas contained within a cylinder fitted with a movable, frictionless piston. The system represents a fundamental construct in thermodynamics, serving as the basis for understanding work, heat, internal energy, and entropy interactions. The analysis begins with system definition and the foundational laws, then proceeds to a detailed examination of boundary work and path-dependent processes. Mathematical formulations for quasi-static ideal gas processes are derived and examined. The report further explores irreversibilities, real gas behavior, and practical applications in power and refrigeration cycles. A comparative analysis of key processes is tabulated, and the critical role of the piston as the enabler of work transfer is emphasized throughout. This report serves as a consolidated reference for the first and second law analysis of this essential thermodynamic system.
+
+\section{Introduction and System Definition}
+The analysis of a gas within a closed container featuring a movable piston constitutes the cornerstone of classical thermodynamics. This configuration, deceptively simple in its geometry, encapsulates the fundamental principles of energy conversion, work transfer, and property relationships. It models a vast array of real-world devices, from internal combustion engines and steam turbines to reciprocating compressors and pneumatic cylinders. The primary objective of this report is to provide a rigorous, mathematical, and conceptual framework for analyzing the thermodynamic state changes and energy interactions of such a system under various constraints.
+
+The precise definition of the \textbf{system} and its \textbf{boundaries} is the critical first step in any thermodynamic analysis. For the scope of this report, we adopt the following definitions:
+\begin{itemize}
+    \item \textbf{System:} The quantity of gas (the working substance) enclosed within the cylinder. The chemical composition and mass of the gas are fixed for a given analysis, making it a \textbf{closed system} or \textbf{control mass}.
+    \item \textbf{Boundary:} The physical enclosure comprising the rigid cylinder walls and the \textit{movable piston}. Energy in the form of work and heat can cross this boundary, but mass cannot.
+    \item \textbf{Surroundings:} Everything external to the system boundary, including the atmosphere, any external weights on the piston, and thermal reservoirs (sources or sinks of heat).
+    \item \textbf{Sign Convention:} We adhere to the \textit{classical sign convention} used in most engineering textbooks: \textbf{Heat transfer \textit{into} the system is positive (Q > 0), and work done \textit{by} the system on the surroundings (e.g., the piston moving outward, lifting a weight) is positive (W > 0).} Consequently, the First Law is expressed as $\Delta U = Q - W$.
+\end{itemize}
+The piston is the crucial element. Its mobility allows the volume of the system to change, enabling the gas to perform \textbf{boundary work} (PdV work) on its surroundings or to have work done upon it. The nature of the piston's movement—whether frictionless or with friction, quasi-static or rapid—determines the reversibility of the process and significantly impacts the work and heat interactions. Initially, we will assume an ideal, frictionless piston to establish fundamental relationships before introducing practical complexities.
+
+\section{Foundational Thermodynamic Laws and Concepts}
+\subsection{Zeroth Law of Thermodynamics}
+The Zeroth Law establishes the concept of temperature and thermal equilibrium. It states that if two systems are each in thermal equilibrium with a third system, they are in thermal equilibrium with each other. This allows for the definition of a temperature scale. In our piston-cylinder device, when the gas ceases to exchange heat with its surroundings (i.e., when it is in thermal equilibrium), we can assign it a definite temperature, $T$. This property is essential for using equations of state, such as the Ideal Gas Law.
+
+\subsection{First Law of Thermodynamics: Conservation of Energy}
+The First Law is the principle of conservation of energy adapted for thermodynamic systems. For our closed system, it states that the net change in the total energy of the system (for stationary systems, this is solely the internal energy, $U$) is equal to the net energy transfer across its boundary.
+
+The \textbf{First Law for a Closed System} is expressed mathematically as:
+\begin{equation}
+\Delta U = Q - W
+\end{equation}
+where:
+\begin{itemize}
+    \item $\Delta U$ (Change in Internal Energy): The change in the system's internal energy (in Joules). For an ideal gas, this is a function of temperature only: $\Delta U = m c_v \Delta T$.
+    \item $Q$ (Net Heat Transfer): The net heat transferred \textit{into} the system during the process (in Joules). Positive $Q$ indicates heating; negative $Q$ indicates cooling.
+    \item $W$ (Net Work Done): The net work done \textit{by} the system via the moving boundary (in Joules). Positive $W$ indicates expansion work output; negative $W$ indicates compression work input.
+\end{itemize}
+This equation is a balance: energy enters as heat ($Q$), some of it leaves as work ($W$), and the remainder is stored as an increase in the internal energy of the gas ($\Delta U$). It is pivotal to note that while $\Delta U$ is a \textbf{property} (a state function) dependent only on the initial and final states, both $Q$ and $W$ are \textbf{path functions}, dependent on the specific process followed.
+
+\subsection{Second Law of Thermodynamics and the Concept of Reversibility}
+The Second Law introduces the concept of entropy and dictates the direction of spontaneous processes. It has multiple formulations, but for process analysis, the Clausius and Kelvin-Planck statements are most relevant. It leads to the powerful inequality:
+\begin{equation}
+\Delta S_{\text{total}} = \Delta S_{\text{system}} + \Delta S_{\text{surroundings}} \geq 0
+\end{equation}
+where equality holds for a \textbf{reversible process} and inequality for an \textbf{irreversible process}.
+
+A \textbf{reversible process} is an idealization—a process that can be reversed without leaving any net change in either the system or the universe. It occurs through a continuous series of equilibrium states. For our piston-cylinder, this implies:
+\begin{enumerate}
+    \item \textbf{Mechanical Equilibrium:} No pressure gradient. The gas pressure, $P$, equals the external pressure at all times, $P_{\text{ext}} = P \pm dP$.
+    \item \textbf{Thermal Equilibrium:} No temperature gradient. The gas temperature, $T$, equals the reservoir temperature at all times.
+    \item \textbf{Absence of Dissipative Effects:} No friction between the piston and cylinder, and no unrestrained expansion.
+\end{enumerate}
+The practical approximation of a reversible process is a \textbf{quasi-static process}—one that occurs infinitely slowly so that the system is always infinitesimally close to equilibrium. All formulas derived for work ($\int P \, dV$) assume a quasi-static process. Real processes are \textbf{irreversible} due to finite pressure/temperature differences, friction, and unrestrained expansion, leading to \textbf{entropy generation} ($S_{\text{gen}} > 0$) and reduced work potential.
+
+\section{Analysis of Work Transfer (The Piston Mechanism)}
+The movable piston facilitates the transfer of energy as work. The work done when the gas expands or is compressed is called \textbf{boundary work} or \textbf{PdV work}.
+
+Consider a quasi-static process where the piston moves an infinitesimal distance $dx$. The force exerted by the gas on the piston is $F = P \cdot A$, where $A$ is the piston's cross-sectional area. The infinitesimal work done by the gas as the piston moves is:
+\begin{equation}
+\delta W = F \cdot dx = (P A) \cdot dx = P (A \, dx) = P \, dV
+\end{equation}
+where $dV = A \, dx$ is the infinitesimal change in the volume of the gas.
+
+The total work transfer during a finite process from an initial state (1) to a final state (2) is obtained by integration:
+\begin{equation}
+W = \int_{1}^{2} \delta W = \int_{V_1}^{V_2} P \, dV
+\quad \text{(Quasi-Static Boundary Work)}
+\end{equation}
+
+This integral is of paramount importance. It graphically represents the \textbf{area under the process path} on a Pressure-Volume (P-V) diagram. This visualization powerfully illustrates that \textbf{work is a path function}. Two processes connecting the same initial and final states (same $\Delta U$) can involve vastly different amounts of work and heat, as the area under their respective paths on the P-V diagram will differ.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.6\textwidth]{p_v_diagram_placeholder.png}
+\caption{The work interaction during a quasi-static process (1 $\rightarrow$ 2) is represented by the shaded area under the P-V curve. The magnitude of work depends on the specific path taken between the two states.}
+\label{fig:pv}
+\end{figure}
+
+The evaluation of the integral $\int P \, dV$ requires a functional relationship between pressure and volume—the \textbf{process path}, $P = f(V)$. This relationship is determined by the constraints imposed on the system (e.g., constant pressure, constant temperature, etc.), which leads to the analysis of specific thermodynamic processes.
+
+\section{Analysis of Specific Thermodynamic Processes (Path-Dependent Analysis)}
+This section analyzes standard quasi-static processes for an \textbf{ideal gas}, assumed to obey the equation of state $PV = n\Re T = mRT$, and to have constant specific heats. The analysis for each process involves:
+\begin{enumerate}
+    \item Applying the process constraint to find the P-V-T relationship.
+    \item Calculating the work transfer using $W = \int P \, dV$.
+    \item Calculating the change in internal energy using $\Delta U = m c_v \Delta T$.
+    \item Applying the First Law to find the heat transfer: $Q = \Delta U + W$.
+\end{enumerate}
+
+\subsection{Isochoric (Constant Volume) Process}
+If the piston is fixed (locked in place), the volume cannot change. No boundary work is possible.
+\begin{itemize}
+    \item \textbf{Process Constraint:} $dV = 0$, $V =$ constant.
+    \item \textbf{P-V-T Relation:} From ideal gas law, $P/T =$ constant. Therefore, $P_2/P_1 = T_2/T_1$.
+    \item \textbf{Work Done:} $W = \int P \, dV = 0$.
+    \item \textbf{First Law Analysis:} $\Delta U = Q - 0 \Rightarrow Q_v = \Delta U = m c_v \Delta T$.
+    \item \textbf{Implication:} All heat transferred into the system increases its internal energy (and hence temperature and pressure). No energy is expended as work.
+\end{itemize}
+
+\subsection{Isobaric (Constant Pressure) Process}
+The piston moves while the gas pressure remains constant. This can be idealized by placing the cylinder in contact with a constant-temperature reservoir and allowing the piston to be loaded with a constant weight (or exposed to constant atmospheric pressure).
+\begin{itemize}
+    \item \textbf{Process Constraint:} $dP = 0$, $P =$ constant.
+    \item \textbf{P-V-T Relation:} $V/T =$ constant (Charles's Law). Therefore, $V_2/V_1 = T_2/T_1$.
+    \item \textbf{Work Done:} $W = \int_{V_1}^{V_2} P \, dV = P (V_2 - V_1) = P \Delta V$. Using ideal gas law, $W = m R \Delta T$.
+    \item \textbf{First Law Analysis:} $\Delta U = m c_v \Delta T$. Therefore, $Q_p = \Delta U + W = m c_v \Delta T + m R \Delta T = m (c_v + R) \Delta T = m c_p \Delta T$.
+    \item \textbf{Implication:} Heat transfer is used both to increase internal energy ($\Delta U$) and to perform work ($P\Delta V$). The specific heat at constant pressure, $c_p$, is greater than $c_v$ by the gas constant $R$.
+\end{itemize}
+
+\subsection{Isothermal (Constant Temperature) Process}
+The gas temperature remains constant during the process. This requires heat exchange with a thermal reservoir at the same temperature, and the process must occur very slowly to maintain thermal equilibrium.
+\begin{itemize}
+    \item \textbf{Process Constraint:} $dT = 0$, $T =$ constant $\Rightarrow \Delta U = 0$ for an ideal gas.
+    \item \textbf{P-V-T Relation:} From $PV =$ constant (Boyle's Law). Therefore, $P_1V_1 = P_2V_2$.
+    \item \textbf{Work Done:}
+    \begin{equation}
+    W = \int_{V_1}^{V_2} P \, dV = \int_{V_1}^{V_2} \frac{n\Re T}{V} \, dV = n\Re T \int_{V_1}^{V_2} \frac{dV}{V} = n\Re T \ln\left(\frac{V_2}{V_1}\right) = n\Re T \ln\left(\frac{P_1}{P_2}\right)
+    \end{equation}
+    \item \textbf{First Law Analysis:} $\Delta U = 0 \Rightarrow Q - W = 0 \Rightarrow Q = W$.
+    \item \textbf{Implication:} For expansion ($V_2 > V_1$), $W > 0$ and $Q > 0$. All heat added is converted entirely into work output. For compression ($V_2 < V_1$), $W < 0$ and $Q < 0$; all work input is rejected as heat.
+\end{itemize}
+
+\subsection{Adiabatic (No Heat Transfer) Process}
+The system is perfectly insulated, or the process occurs so rapidly that there is no time for significant heat transfer ($Q = 0$). A reversible adiabatic process is also \textbf{isentropic} (constant entropy).
+\begin{itemize}
+    \item \textbf{Process Constraint:} $Q = 0$, and reversible (no internal irreversibilities).
+    \item \textbf{P-V-T Relation:} Derived from combining the ideal gas law and the First Law with $dQ = 0$. The result is:
+    \begin{align}
+    &PV^\gamma = \text{constant}, \\
+    &TV^{\gamma-1} = \text{constant}, \\
+    &\frac{T}{P^{(\gamma-1)/\gamma}} = \text{constant}
+    \end{align}
+    where $\gamma$ (gamma) is the ratio of specific heats: $\gamma = c_p / c_v$.
+    \item \textbf{Work Done:} Using the P-V relation ($P V^\gamma = \text{constant} = C$):
+    \begin{equation}
+    W = \int_{V_1}^{V_2} P \, dV = C \int_{V_1}^{V_2} V^{-\gamma} \, dV = \frac{C}{1-\gamma} \left( V_2^{1-\gamma} - V_1^{1-\gamma} \right)
+    \end{equation}
+    Substituting $C = P_1V_1^\gamma = P_2V_2^\gamma$ yields the more useful form:
+    \begin{equation}
+    W = \frac{P_2 V_2 - P_1 V_1}{1 - \gamma} = \frac{P_1 V_1 - P_2 V_2}{\gamma - 1}
+    \end{equation}
+    Using the ideal gas law, this can also be expressed as:
+    \begin{equation}
+    W = \frac{m R (T_1 - T_2)}{\gamma - 1} = m c_v (T_1 - T_2) = -\Delta U
+    \end{equation}
+    \item \textbf{First Law Analysis:} $\Delta U = -W$. The work done \textit{by} the gas during an adiabatic expansion ($W > 0$) comes entirely from the decrease in its internal energy ($\Delta U < 0$, temperature drops). During an adiabatic compression ($W < 0$), work done \textit{on} the gas increases its internal energy (temperature rises).
+\end{itemize}
+
+\subsection{Polytropic Process: A Generalized Model}
+Many real processes do not fit perfectly into the above categories. A polytropic process is a general empirical model that provides a good fit for a wide range of actual compression and expansion processes.
+\begin{itemize}
+    \item \textbf{Process Constraint:} $PV^n = \text{constant}$, where $n$ is the polytropic index. It can vary from $-\infty$ to $+\infty$.
+    \item \textbf{P-V-T Relation:} $PV^n = \text{constant}$, $T V^{n-1} = \text{constant}$, $T / P^{(n-1)/n} = \text{constant}$.
+    \item \textbf{Work Done:} The derivation mirrors that for the adiabatic process, replacing $\gamma$ with $n$:
+    \begin{equation}
+    W = \frac{P_2 V_2 - P_1 V_1}{1 - n} = \frac{m R (T_1 - T_2)}{n - 1} \quad \text{(for } n \neq 1 \text{)}
+    \end{equation}
+    For $n = 1$ (isothermal process), the formula $W = n\Re T \ln(V_2/V_1)$ is used.
+    \item \textbf{First Law Analysis:} $Q = \Delta U + W = m c_v (T_2 - T_1) + W$. The heat transfer is non-zero and depends on $n$.
+    \item \textbf{Special Cases:} The polytropic model elegantly unifies the standard processes:
+    \begin{itemize}
+        \item $n = 0$: \textbf{Isobaric} ($P =$ constant)
+        \item $n = 1$: \textbf{Isothermal} ($T =$ constant, for ideal gas)
+        \item $n = \gamma$: \textbf{Adiabatic/Isentropic} ($Q = 0$, reversible)
+        \item $n \rightarrow \pm\infty$: \textbf{Isochoric} ($V =$ constant)
+    \end{itemize}
+\end{itemize}
+
+\section{Detailed Comparative Analysis of Quasi-Static Ideal Gas Processes}
+\begin{table}[h!]
+\centering
+\caption{Comparative Analysis of Standard Thermodynamic Processes for an Ideal Gas (Closed System)}
+\label{tab:processes}
+\begin{tabular}{p{2.8cm} p{2.2cm} p{3cm} p{2.8cm} p{2.5cm} p{2.5cm}}
+\toprule
+\textbf{Process Name \& Constraint} & \textbf{Governing Relation (P-V-T)} & \textbf{Boundary Work (W)} & \textbf{Heat Transfer (Q)} & \textbf{Change in Internal Energy ($\Delta U$)} & \textbf{Polytropic Index (n)} \\
+\midrule
+\textbf{Isochoric} & $P \propto T$ & $W = 0$ & $Q = m c_v (T_2 - T_1)$ & $\Delta U = m c_v (T_2 - T_1)$ & $n \rightarrow \infty$ \\
+Constant Volume (V) & $P_1/T_1 = P_2/T_2$ & & & & \\
+\midrule
+\textbf{Isobaric} & $V \propto T$ & $W = P(V_2 - V_1)$ & $Q = m c_p (T_2 - T_1)$ & $\Delta U = m c_v (T_2 - T_1)$ & $n = 0$ \\
+Constant Pressure (P) & $V_1/T_1 = V_2/T_2$ & $= mR(T_2 - T_1)$ & & & \\
+\midrule
+\textbf{Isothermal} & $P \propto 1/V$ & $W = n\Re T \ln\left(\frac{V_2}{V_1}\right)$ & $Q = W$ & $\Delta U = 0$ & $n = 1$ \\
+Constant Temperature (T) & $P_1V_1 = P_2V_2$ & $= n\Re T \ln\left(\frac{P_1}{P_2}\right)$ & & & \\
+\midrule
+\textbf{Adiabatic (Reversible)} & $PV^\gamma = \text{const.}$ & $W = \frac{P_1V_1 - P_2V_2}{\gamma - 1}$ & $Q = 0$ & $\Delta U = -W$ & $n = \gamma$ \\
+No Heat Transfer (Q=0) & $TV^{\gamma-1} = \text{const.}$ & $= m c_v (T_1 - T_2)$ & & $= m c_v (T_2 - T_1)$ & \\
+\midrule
+\textbf{Polytropic (General)} & $PV^n = \text{const.}$ & $W = \frac{P_1V_1 - P_2V_2}{n - 1}$ & $Q = \Delta U + W$ & $\Delta U = m c_v (T_2 - T_1)$ & $n$ (variable) \\
+$PV^n = \text{constant}$ & $TV^{\,n-1} = \text{const.}$ & (for $n \neq 1$) & $= m c_v (T_2-T_1) + W$ & & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Variable Definitions in Table:} $m$ = mass of gas (kg), $n$ = number of moles (mol), $R$ = specific gas constant (J/kg·K), $\Re$ = universal gas constant (8.314 J/mol·K), $c_v$ = specific heat at constant volume (J/kg·K), $c_p$ = specific heat at constant pressure (J/kg·K), $\gamma = c_p/c_v$, $T$ = absolute temperature (K), $P$ = absolute pressure (Pa), $V$ = volume (m³).
+
+\section{Advanced Analysis and Applications}
+\subsection{Non-Ideal Gas Behavior}
+The ideal gas law ($PV = n\Re T$) assumes no intermolecular forces and that molecules occupy negligible volume. At high pressures and/or low temperatures, real gases deviate from this behavior. More complex equations of state are required, such as the \textbf{van der Waals equation}:
+\begin{equation}
+\left(P + \frac{a n^2}{V^2}\right)(V - n b) = n\Re T
+\end{equation}
+where '$a$' corrects for attractive forces and '$b$' corrects for molecular volume. Calculating work for a real gas requires using this (or a similar) relation in the integral $\int P \, dV$, and $\Delta U$ is no longer a function of temperature alone—it also depends on volume or pressure. This significantly complicates the analysis but is essential for accurate modeling of systems like high-pressure compressors.
+
+\subsection{Irreversibilities and Their Impact}
+Real piston-cylinder devices experience irreversibilities that reduce performance.
+\begin{itemize}
+    \item \textbf{Friction:} Friction between the piston and cylinder converts mechanical work directly into heat (dissipation). This heat may flow into the system or surroundings. To move the piston, the gas pressure must overcome both the external pressure \textit{and} friction. More work input is required for compression, and less work output is obtained from expansion than in the reversible case.
+    \item \textbf{Finite Pressure Gradients (Unrestrained Expansion):} If the external pressure is suddenly reduced (e.g., by removing a weight), the gas expands rapidly and uncontrollably until it reaches a new equilibrium. This is a highly irreversible process. During the initial violent expansion, $P_{\text{gas}} \gg P_{\text{ext}}$, and the work done $\int P_{\text{ext}} \, dV$ is less than the reversible work $\int P_{\text{gas}} \, dV$. The "lost work" potential manifests as entropy generation.
+    \item \textbf{Heat Transfer Across a Finite Temperature Difference:} If the gas temperature differs significantly from the reservoir temperature during heat exchange, the process is irreversible.
+\end{itemize}
+For irreversible processes, the work is still calculated by $W = \int P_{\text{ext}} \, dV$, but $P_{\text{ext}}$ is not equal to the system pressure $P$. The First Law still holds, but the property relations (like $PV^\gamma = \text{constant}$) do not. The Second Law analysis becomes crucial: $\Delta S_{\text{system}} + \Delta S_{\text{surroundings}} = S_{\text{gen}} > 0$.
+
+\subsection{Practical Applications as Case Studies}
+\textbf{1. Power Cycle (Otto Cycle - Spark-Ignition Engine):}
+\begin{itemize}
+    \item \textbf{Processes:} The gas-air mixture undergoes adiabatic compression (piston moves in), isochoric heating (spark ignition), adiabatic expansion (power stroke, piston moves out), and isochoric cooling (exhaust valve open).
+    \item \textbf{Analysis:} The net work output of the cycle is the area enclosed by the four processes on the P-V diagram. The efficiency is $\eta = W_{\text{net}} / Q_{\text{in}}$. Irreversibilities (friction, heat loss, finite combustion time) reduce the actual work and efficiency below the ideal air-standard cycle analysis.
+\end{itemize}
+
+\textbf{2. Refrigeration/Compression Cycle (Reciprocating Compressor):}
+\begin{itemize}
+    \item \textbf{Processes:} The refrigerant gas undergoes adiabatic/isentropic (or polytropic) compression (work input), isobaric cooling and condensation (heat rejection), isenthalpic throttling (irreversible expansion), and isobaric evaporation (heat absorption).
+    \item \textbf{Analysis:} The compressor work input, $W_c = \int P \, dV$ during compression, is a major determinant of the system's Coefficient of Performance (COP). Valve losses, friction, and heat transfer during compression (making it polytropic with $n < \gamma$) increase the required work input compared to the ideal isentropic case.
+\end{itemize}
+
+\section{Mathematical Framework and Assumptions: A Summary}
+The preceding analysis rests on a well-defined mathematical and conceptual framework. The core assumptions are:
+\begin{enumerate}
+    \item \textbf{Closed System:} Mass ($m$ or $n$) is constant.
+    \item \textbf{Uniform State Postulate:} At any instant, the gas properties ($P$, $T$, $\rho$) are uniform throughout the cylinder. This allows the use of single values for $P$, $V$, $T$, etc.
+    \item \textbf{Quasi-Static Process (for core formulas):} The process is slow enough that the system passes through a continuous series of equilibrium states, allowing the use of $W = \int P \, dV$ and property relationships like $PV^n = \text{constant}$.
+    \item \textbf{Ideal Gas Behavior (for standard process formulas):} The working fluid obeys $PV = mRT$, and its internal energy and enthalpy are functions of temperature only: $u = u(T)$, $du = c_v \, dT$, $dh = c_p \, dT$.
+    \item \textbf{Constant Specific Heats (for simplified calculations):} $c_v$ and $c_p$ are taken as constant over the temperature range of interest.
+    \item \textbf{Negligible Kinetic and Potential Energy Changes:} The system is stationary, and changes in bulk kinetic and potential energy of the gas are assumed to be zero. Therefore, total energy $E = U$.
+\end{enumerate}
+The primary governing equations for an ideal gas with constant specific heats are:
+\begin{align}
+&\text{Equation of State:} & PV &= mRT = n\Re T \\
+&\text{Internal Energy Change:} & \Delta U &= m c_v (T_2 - T_1) \\
+&\text{Enthalpy Change:} & \Delta H &= m c_p (T_2 - T_1) \\
+&\text{First Law:} & \Delta U &= Q - W \\
+&\text{Boundary Work (Quasi-Static):} & W &= \int_{V_1}^{V_2} P \, dV \\
+&\text{Relationship between Specific Heats:} & c_p - c_v &= R, \quad \gamma = \frac{c_p}{c_v}
+\end{align}
+
+\section{Conclusion and Synthesis}
+The thermodynamic analysis of a gas within a closed container equipped with a movable piston provides a profound and practical foundation for energy science. This report has systematically explored this system, beginning with its definition and the immutable laws that govern its behavior.
+
+The central theme is the \textbf{path-dependency of work and heat}. The movable piston enables the performance of boundary work, quantified by the area under the process path on a P-V diagram. The same change in internal energy (and temperature) can be achieved through an infinite number of paths, each characterized by a different balance of work and heat. The derived formulas for isochoric, isobaric, isothermal, adiabatic, and polytropic processes provide the essential toolkit for analyzing these paths for an ideal gas.
+
+The concept of \textbf{reversibility}, idealized in the quasi-static, frictionless process, serves as a benchmark for maximum work output (in expansion) or minimum work input (in compression). Real-world irreversibilities—friction, unrestrained expansion, and finite temperature differences—inevitably degrade performance, generating entropy and reducing the useful work potential of the system.
+
+Finally, this fundamental model translates directly to critical applications. Whether analyzing the power stroke of an engine, the compression of a refrigerant, or the simple expansion of air in a pneumatic device, the principles and mathematics developed here remain the same. The piston-cylinder device is more than a theoretical construct; it is the fundamental mechanical embodiment of thermodynamic work transfer, and its analysis remains as relevant today as it was at the dawn of the industrial age.
+
+\section{References}
+\begin{enumerate}
+    \item Cengel, Y. A., \& Boles, M. A. (2015). \textit{Thermodynamics: An Engineering Approach} (8th ed.). McGraw-Hill Education.
+    \item Moran, M. J., Shapiro, H. N., Boettner, D. D., \& Bailey, M. B. (2014). \textit{Fundamentals of Engineering Thermodynamics} (8th ed.). Wiley.
+    \item Sonntag, R. E., Borgnakke, C., \& Van Wylen, G. J. (2003). \textit{Fundamentals of Thermodynamics} (6th ed.). Wiley.
+    \item Çengel, Y. A., \& Ghajar, A. J. (2015). \textit{Heat and Mass Transfer: Fundamentals and Applications} (5th ed.). McGraw-Hill Education.
+    \item Potter, M. C., \& Somerton, C. W. (2014). \textit{Thermodynamics for Engineers}. McGraw-Hill Education.
+    \item The Engineering ToolBox. \textit{Thermodynamic Properties of Air}. \url{https://www.engineeringtoolbox.com/air-properties-d_156.html}
+    \item NIST Chemistry WebBook. \textit{Thermophysical Properties of Fluid Systems}. \url{https://webbook.nist.gov/chemistry/fluid/}
+\end{enumerate}
+
+\end{document}

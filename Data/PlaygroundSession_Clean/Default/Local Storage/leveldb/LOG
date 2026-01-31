@@ -1,0 +1,6 @@
+2026/01/31-13:28:11.653 4b04 Reusing MANIFEST c:\AnithingLLM\Jarvis.v3.0\Jarvis.v3.0\Data\PlaygroundSession_Clean\Default\Local Storage\leveldb/MANIFEST-000001
+2026/01/31-13:28:11.657 4b04 Recovering log #3
+2026/01/31-13:28:11.659 4b04 Reusing old log c:\AnithingLLM\Jarvis.v3.0\Jarvis.v3.0\Data\PlaygroundSession_Clean\Default\Local Storage\leveldb/000003.log 
+2026/01/31-13:57:15.280 af8 Level-0 table #5: started
+2026/01/31-13:57:15.293 af8 Level-0 table #5: 18424 bytes OK
+2026/01/31-13:57:15.296 af8 Delete type=0 #3

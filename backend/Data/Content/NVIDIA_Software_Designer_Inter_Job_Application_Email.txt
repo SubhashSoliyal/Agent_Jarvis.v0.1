@@ -1,0 +1,28 @@
+Subject: Application for Software Designer Position at NVIDIA - Interview Confirmation
+
+Dear Hiring Manager,
+
+I am writing to express my enthusiastic interest in the Software Designer position at NVIDIA, as advertised on [Job Portal/Source]. I am thrilled to have been selected for an interview, scheduled to take place in two days, and I am eager to discuss my qualifications and passion for the role.
+
+As a recent [Degree and Field of Study] graduate with a strong foundation in computer science and software development, I am confident that my skills and knowledge make me an ideal candidate for this position. Throughout my academic journey, I have developed a solid understanding of programming languages, data structures, and software design principles. My proficiency in languages such as C++, Python, and Java, as well as my experience with Agile development methodologies, have equipped me with the technical expertise required to excel in this role.
+
+I am particularly drawn to NVIDIA's innovative approach to software design and its commitment to pushing the boundaries of technology. The company's dedication to creating exceptional user experiences and its passion for innovation resonate deeply with me. I am excited about the prospect of being part of a team that is shaping the future of technology and making a significant impact on the industry.
+
+In preparation for the interview, I have reviewed NVIDIA's software design principles and have familiarized myself with the company's products and services. I am confident that my strong work ethic, attention to detail, and excellent communication skills will enable me to make a valuable contribution to the team.
+
+I would like to express my gratitude for the opportunity to interview for this position. I am looking forward to meeting with the interview panel and discussing how my skills and experience align with the requirements of the role. Please find attached my updated resume and a copy of my transcripts for your reference.
+
+Thank you for considering my application. I am eager to learn more about the position and how I can contribute to NVIDIA's success. If there is any additional information I can provide or if you require any further clarification, please do not hesitate to contact me.
+
+Interview Details:
+Date: [Date]
+Time: [Time]
+Location: [Location]
+
+I confirm that I will be attending the interview as scheduled and appreciate the opportunity to meet with the team.
+
+Thank you for your time and consideration.
+
+Sincerely,
+
+[Your Name]

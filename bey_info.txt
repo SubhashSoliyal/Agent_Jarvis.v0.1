@@ -1,0 +1,19 @@
+Contents of livekit.plugins.bey:
+AvatarSession: <class 'livekit.plugins.bey.avatar.AvatarSession'>
+  Doc: A Beyond Presence avatar session
+  Sig: (*, avatar_id: 'NotGivenOr[str | None]' = NOT_GIVEN, api_url: 'NotGivenOr[str]' = NOT_GIVEN, api_key: 'NotGivenOr[str]' = NOT_GIVEN, avatar_participant_identity: 'NotGivenOr[str]' = NOT_GIVEN, avatar_participant_name: 'NotGivenOr[str]' = NOT_GIVEN, conn_options: 'APIConnectOptions' = APIConnectOptions(max_retry=3, retry_interval=2.0, timeout=10.0)) -> 'None'
+BeyException: <class 'livekit.plugins.bey.avatar.BeyException'>
+  Doc: Exception for Beyond Presence errors
+BeyPlugin: <class 'livekit.plugins.bey.BeyPlugin'>
+  Doc: None
+  Sig: () -> None
+NOT_IN_ALL: ['BeyPlugin', 'Plugin', '__all__', '__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__path__', '__spec__', 'avatar', 'log', 'logger', 'version']
+Plugin: <class 'livekit.agents.plugin.Plugin'>
+  Doc: None
+  Sig: (title: 'str', version: 'str', package: 'str', logger: 'logging.Logger | None' = None) -> 'None'
+_module: ['AvatarSession', 'BeyException', 'BeyPlugin', 'Plugin', '__all__', '__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__path__', '__spec__', '__version__', 'avatar', 'log', 'logger', 'version']
+avatar: <module 'livekit.plugins.bey.avatar' from 'C:\\Users\\Acer\\AppData\\Roaming\\Python\\Python313\\site-packages\\livekit\\plugins\\bey\\avatar.py'>
+log: <module 'livekit.plugins.bey.log' from 'C:\\Users\\Acer\\AppData\\Roaming\\Python\\Python313\\site-packages\\livekit\\plugins\\bey\\log.py'>
+logger: <Logger livekit.plugins.bey (WARNING)>
+n: version
+version: <module 'livekit.plugins.bey.version' from 'C:\\Users\\Acer\\AppData\\Roaming\\Python\\Python313\\site-packages\\livekit\\plugins\\bey\\version.py'>

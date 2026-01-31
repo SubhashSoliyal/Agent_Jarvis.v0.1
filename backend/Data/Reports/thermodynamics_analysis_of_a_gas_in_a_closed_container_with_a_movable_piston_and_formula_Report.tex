@@ -1,0 +1,125 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{longtable}
+\usepackage{multirow}
+
+\title{Comprehensive Thermodynamic Analysis of a Gas in a Closed Container with a Movable Piston}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This report provides a comprehensive analysis of the thermodynamics governing a classical closed system: a fixed mass of gas confined within a cylinder and sealed by a movable, frictionless piston. This model serves as a fundamental building block for understanding energy conversion in mechanical and thermal systems. The analysis is centered on the application of the First and Second Laws of Thermodynamics to derive work, heat transfer, and property change relationships for various constraint-based processes (isobaric, isothermal, isentropic, etc.). Mathematical formulations are developed from the Ideal Gas Law and process-specific constraints, with a focus on the boundary work integral. A detailed comparison of processes is presented, and the critical role of the piston as the enabler of energy transfer is emphasized. The report underscores how this simple system encapsulates the core principles of energy conservation, entropy, and the path-dependency of work and heat.
+\end{abstract}
+
+\section{Introduction \& System Definition}
+The system under consideration is a quintessential model in thermodynamics, comprising a fixed mass ($m$) of gas contained within rigid, adiabatic or diathermal walls and sealed by a movable piston. The piston is assumed to be massless and frictionless, allowing for volume changes while maintaining a perfect seal. This configuration represents a \textbf{closed system} or \textbf{control mass}, where mass cannot cross the boundary, but energy in the form of work and heat can.
+
+The primary purpose of analyzing this system is to understand the fundamental interplay between heat ($Q$), work ($W$), and the resulting changes in the gas's internal state (pressure $P$, volume $V$, temperature $T$, internal energy $U$, entropy $S$). It forms the conceptual basis for engines, compressors, and many other thermodynamic devices.
+
+\subsection*{Key Assumptions for the Ideal Model:}
+\begin{enumerate}
+    \item \textbf{Ideal Gas Behavior:} The gas obeys the equation of state $ PV = mRT $, where $R$ is the specific gas constant. This implies negligible intermolecular forces and molecular volume.
+    \item \textbf{Quasi-Equilibrium Processes:} All changes occur infinitely slowly, such that the system passes through a continuous sequence of equilibrium states. This allows the use of the integral $ W = \int P \, dV $ and defines a clear path on property diagrams.
+    \item \textbf{Negligible Kinetic and Potential Energy Changes:} $ \Delta KE = \Delta PE \approx 0 $. Thus, the First Law simplifies to $ \Delta U = Q - W $.
+    \item \textbf{Frictionless Piston:} No energy dissipation occurs at the piston-cylinder interface during movement.
+\end{enumerate}
+
+The boundary of the system is defined by the inner cylinder walls and the inner face of the piston. The piston's mobility is the critical feature that enables \textbf{boundary work} (also called expansion/compression work) to be performed.
+
+\section{Theoretical Foundations: Governing Laws}
+\subsection{Zeroth Law of Thermodynamics}
+The Zeroth Law establishes the concept of temperature and thermal equilibrium. If the piston-cylinder assembly is placed in thermal contact with a reservoir, the gas will eventually reach thermal equilibrium with that reservoir, attaining its temperature. This principle justifies the use of a constant temperature ($T$) boundary condition for isothermal processes.
+
+\subsection{First Law of Thermodynamics (Energy Conservation)}
+For the defined closed system, the First Law is expressed as:
+\[
+\Delta U = Q - W
+\]
+Where: $\Delta U$ is the change in internal energy of the gas (J), $Q$ is the net heat transfer \textit{into} the system (J), and $W$ is the net work done \textit{by} the system on its surroundings (J). For the piston-cylinder assembly, the only work mode is boundary work ($W_b$). Therefore:
+\[
+\Delta U = Q - W_b
+\]
+This equation is the cornerstone of energy accounting for the system. The internal energy change for an ideal gas, where $c_v$ is the constant-volume specific heat, is given by:
+\[
+\Delta U = m c_v \Delta T \quad \text{or, in differential form,} \quad dU = m c_v \, dT
+\]
+
+\subsection{Boundary Work Formulation}
+The work done by the gas during a volume change from state 1 to state 2 is:
+\[
+W_b = \int_{V_1}^{V_2} P \, dV
+\]
+This integral represents the area under the process curve on a Pressure-Volume ($P$-$V$) diagram. The sign convention is crucial: if the gas expands ($dV > 0$), it does positive work on the piston; if compressed ($dV < 0$), work is done on the gas (negative $W_b$).
+
+\subsection{Second Law of Thermodynamics (Entropy and Irreversibility)}
+The Second Law introduces the concept of entropy ($S$) and the directionality of processes. For any process, the entropy change of the system is:
+\[
+\Delta S = S_{\text{gen}} + \int \frac{\delta Q}{T_{\text{boundary}}}
+\]
+Where $ S_{\text{gen}} \geq 0 $ is the entropy generated due to irreversibilities (friction, unrestrained expansion, temperature gradients). For a \textbf{reversible process}, $ S_{\text{gen}} = 0 $, and $ T_{\text{boundary}} = T_{\text{system}} $. For an ideal gas, the entropy change between two states is a property change, calculable as:
+\[
+\Delta S = m \left[ c_v \ln\left(\frac{T_2}{T_1}\right) + R \ln\left(\frac{V_2}{V_1}\right) \right] = m \left[ c_p \ln\left(\frac{T_2}{T_1}\right) - R \ln\left(\frac{P_2}{P_1}\right) \right]
+\]
+Where $c_p$ is the constant-pressure specific heat. A key process arising from the Second Law is the \textbf{isentropic} (reversible adiabatic) process, where $Q = 0$ and $\Delta S = 0$.
+
+\section{Analysis of Standard Thermodynamic Processes}
+Each process is defined by a specific constraint, leading to unique $P$-$V$-$T$ relationships and energy interactions. The general framework uses the Ideal Gas Law ($PV = mRT$) and the process constraint to derive these relationships.
+
+\subsection{Isobaric Process (Constant Pressure, $P = \text{constant}$)}
+\begin{itemize}
+    \item \textbf{Governing Relation:} $ \frac{V}{T} = \text{constant} $ (from $PV = mRT$).
+    \item \textbf{Boundary Work:} Since $P$ is constant, $ W_b = P \int_{V_1}^{V_2} dV = P (V_2 - V_1) $.
+    \item \textbf{Internal Energy Change:} $ \Delta U = m c_v (T_2 - T_1) $.
+    \item \textbf{Heat Transfer:} From the First Law: $ Q = \Delta U + W_b = m c_v (T_2 - T_1) + P(V_2 - V_1) $. Noting that $ P\Delta V = mR\Delta T $ and $ c_p = c_v + R $, this simplifies to $ Q = m c_p (T_2 - T_1) $.
+\end{itemize}
+
+\subsection{Isochoric Process (Constant Volume, $V = \text{constant}$)}
+\begin{itemize}
+    \item \textbf{Governing Relation:} $ \frac{P}{T} = \text{constant} $.
+    \item \textbf{Boundary Work:} $ W_b = \int P \, dV = 0 $. No work is done.
+    \item \textbf{Internal Energy Change:} $ \Delta U = m c_v (T_2 - T_1) $.
+    \item \textbf{Heat Transfer:} $ Q = \Delta U + 0 = m c_v (T_2 - T_1) $. All heat transfer changes the internal energy (and thus temperature) directly.
+\end{itemize}
+
+\subsection{Isothermal Process (Constant Temperature, $T = \text{constant}$, $\Delta U = 0$ for ideal gas)}
+\begin{itemize}
+    \item \textbf{Governing Relation:} $ PV = \text{constant} $ (Boyle's Law).
+    \item \textbf{Boundary Work:} $ W_b = \int_{V_1}^{V_2} P \, dV = \int_{V_1}^{V_2} \frac{mRT}{V} \, dV = mRT \ln\left(\frac{V_2}{V_1}\right) = P_1 V_1 \ln\left(\frac{V_2}{V_1}\right) $.
+    \item \textbf{Internal Energy Change:} $ \Delta U = 0 $.
+    \item \textbf{Heat Transfer:} $ Q = \Delta U + W_b = W_b $. All heat added is converted directly into work done by the gas during expansion.
+\end{itemize}
+
+\subsection{Isentropic Process (Reversible Adiabatic: No heat transfer, $Q=0$, and constant entropy, $\Delta S=0$)}
+\begin{itemize}
+    \item \textbf{Governing Relation:} $ PV^{k} = \text{constant} $, and $ TV^{k-1} = \text{constant} $, where $ k = \frac{c_p}{c_v} $ is the specific heat ratio (isentropic exponent).
+    \item \textbf{Boundary Work:} Using $ P V^k = C $, $ W_b = \int_{V_1}^{V_2} C V^{-k} \, dV = \frac{C (V_2^{1-k} - V_1^{1-k})}{1-k} $. Substituting $ C = P_1 V_1^k = P_2 V_2^k $ yields $ W_b = \frac{P_2 V_2 - P_1 V_1}{1 - k} $.
+    \item \textbf{Internal Energy Change:} $ \Delta U = m c_v (T_2 - T_1) $.
+    \item \textbf{Heat Transfer:} $ Q = 0 $.
+    \item \textbf{Relationship:} From the First Law: $ 0 = \Delta U + W_b $, so $ W_b = -\Delta U $. Work is done at the expense of internal energy.
+\end{itemize}
+
+\subsection{Polytropic Process (Generalized: $PV^n = \text{constant}$)}
+The polytropic process is a catch-all model where $n$ is the polytropic index. It reduces to the standard processes for specific values of $n$:
+\begin{itemize}
+    \item $n=0$: Isobaric ($P = \text{constant}$)
+    \item $n=1$: Isothermal ($T = \text{constant}$, for ideal gas)
+    \item $n=k$: Isentropic ($Q=0$, reversible)
+    \item $n=\infty$: Isochoric ($V = \text{constant}$)
+\end{itemize}
+\begin{itemize}
+    \item \textbf{Governing Relation:} $ P V^n = \text{constant} $.
+    \item \textbf{Boundary Work:} Derived identically to the isentropic case: $ W_b = \frac

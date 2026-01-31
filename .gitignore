@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Environment variables (Safety First!)
+.env
+
+# VS Code
+.vscode/
+
+# LiveKit/DeepSeek Session Data (Browser profiles)
+Data/DeepSeekSession/
+Data/ChromeSession/
+
+# We want to KEEP Reports and Content as per user request
+# But we might want to ignore temp screenshots
+Data/*.png
+
+# Ignore test artifacts if desired, but I'll keep them for now as they are small
